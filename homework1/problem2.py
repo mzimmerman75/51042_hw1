@@ -11,14 +11,16 @@ def expand(rng):
 
     for i in rng.split(sep=','):
         if '-' not in i:
-            ran.append(int(i))
+            if int(i) not in ran:
+                ran.append(int(i))
         else:
             n = i.split(sep="-")
             n_int = list(map(int, n))
             b = int(n[0])
             while b != n_int[-1]:
-                ran.append(b)
-                b += 1
+                if int(b) not in ran:
+                    ran.append(b)
+                    b += 1
     
     #sort the final list
     ran.sort()
